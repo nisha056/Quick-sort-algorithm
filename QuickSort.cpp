@@ -1,69 +1,86 @@
-#include <iostream>
-using namespace std;
+#include "QuickSort.h"
 
-void quickSort(int[], int, int);
-int partition(int[], int, int);
-//void swap(int, int);
-
-int main()
+QuickSort::QuickSort()
 {
-    int a[50], n, i;
-    cout << "Enter the number of rectangles :: ";
-    cin >> n;
-    cout << "\nEnter the heights of rectangles :: " << endl;
-
-    for (i = 0; i < n; i++)
+	outlineBox.setSize(sf::Vector2f(900, 800));
+	outlineBox.setPosition(sf::Vector2f(50, 50));
+	outlineBox.setOutlineColor(sf::Color::Black);
+	outlineBox.setOutlineThickness(10);
+	outlineBox.setFillColor(sf::Color::Transparent);
+	infoText.setCharacterSize(30);
+	if (!font.loadFromFile("DejaVuSans.ttf"))
     {
-        cin >> a[i];
+        std::cout<<"kkk";
     }
+	infoText.setFont(font);
+	infoText.setFillColor(sf::Color::Black);
+	infoText.setPosition(sf::Vector2f(50, 50));
+	infoText.setString(" Press 'S' to load data ... ");
 
-    quickSort(a, 0, n - 1);
-    cout << "Array after sorting :: " << endl;
-
-    for (i = 0; i < n; i++)
-    {
-        cout << a[i] << "\t";
-    }
-
-    return 0;
 }
 
-void quickSort(int a[], int l, int u)
+void QuickSort::setData(int height[])
 {
-    if (l < u)
+
+	//Data Preprocessing
+	std::cout << " Setting Height ... ";
+	int x=90;
+	for (int i = 0; i < 10; i++) {
+		recn[i].setFillColor(sf::Color::Yellow);
+		recn[i].setOutlineColor(sf::Color::Black);
+		recn[i].setOutlineThickness(-3);
+		recn[i].setSize(sf::Vector2f(40, -(height[i])));
+		recn[i].setPosition(sf::Vector2f(x,720));
+		x=x+90;
+		std::cout << recn[i].getSize().y << ",";
+	}
+	std::cout << "\n";
+
+}
+// last element is taken as pivot
+
+int QuickSort::partition(int height[],int low,int high)
+{
+    int i=low,pivot=height[high];
+    for(int j=low;j<high;j++)
     {
-        int Index = partition(a, l, u);
-        quickSort(a, l, Index - 1);
-        quickSort(a, Index + 1, u);
+        if(height[j]<= pivot)
+        {
+            int temp=height[i];
+            height[i]=height[j];
+            height[j]=temp;
+           // height.draw(2,i,j);
+            i++;
+        }
     }
+    int tem=height[i];
+    height[i]=height[high];
+    height[high]=tem;
+    return i;
+
+}
+void QuickSort::quicksort(int height[],int low,int high)
+{
+    //std::cout<<"Sorting the data";
+    if(low<high)
+    {
+        int notation=partition(height,low,high);
+        quicksort(height,low,notation-1);
+        quicksort(height,notation+1,high);
+    }
+
+}
+void QuickSort::sort(int height[])
+{
+	std::cout << "Sorting Data ";
+	quicksort(height,0,9);
 }
 
-int partition(int a[], int l, int u)
+void QuickSort::draw(sf::RenderWindow& window)
 {
-    int pivot = a[l];
-    int start = l;
-    int end = u;
-    while (start < end)
-    {
-        while (a[start] <= pivot)
-        {
-            start++;
-        }
-        while (a[end] > pivot)
-        {
-            end--;
-        }
-        if (start < end)
-        {
-            int temp = a[start];
-            a[start] = a[end];
-            a[end] = temp;
-        }
-    }
-    //swap(a[l], a[end]);
-    int tem = a[l];
-    a[l] = a[end];
-    a[end] = tem;
-
-    return end;
+	window.draw(outlineBox);
+	window.draw(infoText);
+	for (int i = 0; i < 10; i++) {
+		window.draw(recn[i]);
+	}
 }
