@@ -26,8 +26,8 @@ void Visualizer::handleUserInput()
             {
       if (event.key.code == sf::Keyboard::Enter)
         {
-            for(int i=0;i<10;i++)
              Q.sort(height);
+             Q.setData(height);
        }
         if (event.key.code == sf::Keyboard::S)
         {
