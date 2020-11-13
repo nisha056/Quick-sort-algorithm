@@ -16,4 +16,6 @@ private:
     sf::RectangleShape height[];
     sf::Font font;
     sf::Text infoText;
+    sf::Text text1;
+    sf::Text text2;
 };
