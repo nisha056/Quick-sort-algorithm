@@ -43,7 +43,7 @@ void QuickSort::setData(int height[])
 		recn[i].setSize(sf::Vector2f(40, -(height[i])));
 		recn[i].setPosition(sf::Vector2f(x,720));
 		x=x+90;
-		std::cout << recn[i].getSize().y << ",";
+		std::cout <<-1*( recn[i].getSize().y) << ",";
 	}
 	std::cout << "\n";
 
