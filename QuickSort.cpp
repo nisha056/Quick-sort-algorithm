@@ -71,7 +71,7 @@ void QuickSort::setData(int height[])
     }
 void QuickSort::quicksort(int height[],int low,int high)
 {
-    std::cout<<"Sorting the data";
+   // std::cout<<"Sorting the data";
     if(low<high)
     {
         sf::sleep(sf::milliseconds(100));
@@ -86,7 +86,7 @@ void QuickSort::quicksort(int height[],int low,int high)
 }
 void QuickSort::sort(int height[])
 {
-	std::cout << "Sorting Data ";
+	//std::cout << "Sorting Data ";
     quicksort(height,0,9);
 }
 
