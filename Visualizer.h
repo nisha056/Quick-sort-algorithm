@@ -11,6 +11,6 @@ public:
 	Visualizer();
 	void run();
 	void handleUserInput();
-	void update();
 	void render();
 };
+
