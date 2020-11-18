@@ -10,7 +10,6 @@ void Visualizer::run()
     std::cout << "Running \n";
 	while (window.isOpen()) {
 		handleUserInput();
-		update();
 		render();
 	}
 }
@@ -24,22 +23,19 @@ void Visualizer::handleUserInput()
             window.close();
         else if (event.type == sf::Event::EventType::KeyPressed)
             {
-      if (event.key.code == sf::Keyboard::Enter)
-        {
-             Q.sort(height);
-             Q.setData(height);
-       }
         if (event.key.code == sf::Keyboard::S)
         {
             Q.setData(height);
+           
+
+       }
+       if (event.key.code == sf::Keyboard::Enter)
+        {
+            Q.quicksort(height,0,9);
 
        }
     }
     }
-}
-
-void Visualizer::update()
-{
 }
 
 void Visualizer::render()
@@ -50,3 +46,4 @@ void Visualizer::render()
 
     window.display();
 }
+
