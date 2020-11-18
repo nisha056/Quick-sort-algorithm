@@ -1,6 +1,5 @@
 #include "QuickSort.h"
-
-QuickSort::QuickSort()
+  QuickSort::QuickSort()
 {
 	outlineBox.setSize(sf::Vector2f(900, 800));
 	outlineBox.setPosition(sf::Vector2f(50, 50));
@@ -43,14 +42,15 @@ void QuickSort::setData(int height[])
 		recn[i].setSize(sf::Vector2f(40, -(height[i])));
 		recn[i].setPosition(sf::Vector2f(x,720));
 		x=x+90;
-		std::cout <<-1*( recn[i].getSize().y) << ",";
+		std::cout << recn[i].getSize().y << ",";
 	}
 	std::cout << "\n";
 
 }
 
-    int QuickSort::partition(int height[],int low,int high)
+int QuickSort::partition(int height[],int low,int high)
 {
+    std::cout<<"Finding the pivot ";
     int current=low,pivot=height[high];
     for(int index=low;index<high;index++)
     {
@@ -59,36 +59,35 @@ void QuickSort::setData(int height[])
             int temp=height[current];
             height[current]=height[index];
             height[index]=temp;
-            sf::sleep(sf::milliseconds(100));
             current++;
         }
     }
     int tem=height[current];
     height[current]=height[high];
     height[high]=tem;
-    sf::sleep(sf::milliseconds(100));
     return current;
     }
 void QuickSort::quicksort(int height[],int low,int high)
 {
-   // std::cout<<"Sorting the data";
+    std::cout<<"Sorting the data";
     if(low<high)
     {
-        sf::sleep(sf::milliseconds(100));
         int notation=partition(height,low,high);
-        //sf::sleep(sf::milliseconds(100));
-
         quicksort(height,low,notation-1);
-        //sf::sleep(sf::milliseconds(100));
+        sf::sleep(sf::milliseconds(500));
+        setData(height);
+        draw(window);
+        window.display();
         quicksort(height,notation+1,high);
+        sf::sleep(sf::milliseconds(500));
+        setData(height);
+        draw(window);
+        window.display();
+    sf::sleep(sf::milliseconds(300));
     }
 
 }
-void QuickSort::sort(int height[])
-{
-	//std::cout << "Sorting Data ";
-    quicksort(height,0,9);
-}
+
 
 void QuickSort::draw(sf::RenderWindow& window)
 {
@@ -100,6 +99,6 @@ void QuickSort::draw(sf::RenderWindow& window)
 		window.draw(recn[i]);
 	}
 
-}
 
+}
 
