@@ -35,14 +35,20 @@ void QuickSort::setData(int height[])
 	//Data Preprocessing
 	std::cout << " Setting Height ... ";
 	int x=90;
+	float w=0.5*x;
+	//int w=(int)r;
+	int l=greatest(height);
 	for (int i = 0; i < 10; i++) {
+            float z=(500/(float)l)*height[i];
+    int t=(int)z;
 		recn[i].setFillColor(sf::Color::Yellow);
 		recn[i].setOutlineColor(sf::Color::Black);
 		recn[i].setOutlineThickness(-3);
-		recn[i].setSize(sf::Vector2f(40, -(height[i])));
+		recn[i].setSize(sf::Vector2f(40, -(t)));
 		recn[i].setPosition(sf::Vector2f(x,720));
-		x=x+90;
-		std::cout << recn[i].getSize().y << ",";
+		x=x+w;
+		//x=x+90;
+		std::cout << height[i] << ",";
 	}
 	std::cout << "\n";
 
@@ -102,3 +108,14 @@ void QuickSort::draw(sf::RenderWindow& window)
 
 }
 
+int QuickSort::greatest( int height[])
+{
+    int maxx=height[0];
+    for(int i=0;i<10;i++)
+    {
+        if (height[i]>maxx)
+            maxx=height[i];
+    }
+    return maxx;
+
+}
