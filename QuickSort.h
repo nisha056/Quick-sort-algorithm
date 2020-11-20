@@ -7,7 +7,7 @@ private:
     sf::RenderWindow window;
     sf::RectangleShape recn[10];
     sf::RectangleShape outlineBox;
-    sf::RectangleShape height[];
+   // sf::RectangleShape height[];
     sf::Font font;
     sf::Text infoText;
     sf::Text text1;
@@ -19,4 +19,5 @@ public:
     int partition(int[],int,int);
     void quicksort(int[],int,int);
     void draw(sf::RenderWindow&);// For drawing in screen
+    int greatest(int arr[]);
 };
