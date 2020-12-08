@@ -8,7 +8,7 @@ sortButton("Sort",sf::Vector2f(120,50),20,sf::Color::Green,sf::Color::Black)
 {
     isSorting = true;
     std::thread sortThread (&Visualizer :: sort, this);
-    sortThread.detach();
+    sortThread.detach(); // it destroys sorting thread
     if(!font.loadFromFile("DejaVuSans.ttf"))
     {
         //error
@@ -63,7 +63,7 @@ void Visualizer::handleUserInput()
         {
               if (setDataButton.isMouseOver(window))
               {
-                  Q.setData(height);
+                  Q.setData(data);
               }
               else if (sortButton.isMouseOver(window))
               {
@@ -86,7 +86,7 @@ void Visualizer::sort()
     while(window.isOpen())
     {
          if (!isSorting) {
-            this->isSorting = Q.sort();
+            this->isSorting = Q.sort(data,0,9);
             std::cout << isSorting << std::endl;
         }
     }
