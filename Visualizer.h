@@ -2,6 +2,7 @@
 #include<SFML/Graphics.hpp>
 #include "QuickSort.h"
 #include "Button.h"
+#include<thread>
 
 class Visualizer
 {
@@ -11,7 +12,7 @@ private:
 	Button setDataButton, sortButton;
 	sf::Font font;
 	QuickSort Q;
-	int height[10] = {300,200,500,400,50,60,50,450,270,390};
+	int data[10] ={400,200,500,100,350,150,450,550,250,300};
 public:
 	Visualizer();
 	void run();
@@ -20,3 +21,4 @@ public:
 	void render();
 	void sort();
 };
+
