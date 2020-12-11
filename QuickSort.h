@@ -7,20 +7,29 @@ class QuickSort
 {
 public:
     QuickSort();
-    void setData(int data[]);
-    int partition (int[],int,int);
-    bool quicksort (int [],int ,int );
-    int greatest(int arr[]);
-    bool sort(int data[],int ,int);
-    void lastpivot(int data[],int,int);
-    void draw(sf::RenderWindow&);// For drawing in screen
+    void setData(int data[], int);
+    int partition(int[], int, int);
+    bool quicksort(int[], int, int);
+    int greatest(int arr[],int);
+    bool sort(int data[], int, int);
+    void draw(sf::RenderWindow&);
+    void printdata(int data[],int size);
+    bool isPaused = false;
 private:
-    sf::RectangleShape recn[10];
+    std::vector<sf::RectangleShape> recn;
+    sf::CircleShape currentPointer,loopPointer;
+    int currentPointerHeight = 700;
+    int loopPointerHeight = 720;
+    int delayTime = 800;
+    int highest;
+    float scalingFactor;
     sf::Font font;
     sf::RectangleShape outlineBox1;
     sf::RectangleShape outlineBox2;
-    void equateRectangle(sf::RectangleShape*,sf::RectangleShape*);
-    std::string comma= "";
-   // std::string separate = "";
-    //std::string part = "";
+    std::string comma = "";
+    void resetBarFillColor();
+    void rescaleBars(int []);
+    sf::Text text1;
+    sf::Text text2;
 };
+
