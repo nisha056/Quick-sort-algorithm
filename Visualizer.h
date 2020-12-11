@@ -1,18 +1,23 @@
 #pragma once
-#include<SFML/Graphics.hpp>
+#include<thread>
 #include "QuickSort.h"
 #include "Button.h"
-#include<thread>
+#include "TextBox.h"
+#include <string>
+
 
 class Visualizer
 {
 private:
+	Textbox textbox1;
 	sf::RenderWindow window;
 	bool isSorting;
-	Button setDataButton, sortButton;
+	Button setDataButton, sortButton,pauseButton;
+	std::vector<int> datas = { 20,200 };
+	void splitInt(std::string str);
 	sf::Font font;
 	QuickSort Q;
-	int data[10] ={400,200,500,100,350,150,450,550,250,300};
+	void printData(std::vector<int>);
 public:
 	Visualizer();
 	void run();
@@ -21,4 +26,3 @@ public:
 	void render();
 	void sort();
 };
-
